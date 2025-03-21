@@ -7,12 +7,12 @@ RUN apt-get update && apt-get install -y \
     wget \
     && rm -rf /var/lib/apt/lists/*
 
-# Устанавливаем Geckodriver
-RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.30.0/geckodriver-v0.30.0-linux64.tar.gz \
-    && tar -xvzf geckodriver-v0.30.0-linux64.tar.gz \
+# Устанавливаем Geckodriver (версия 0.36.0)
+RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.36.0/geckodriver-v0.36.0-linux64.tar.gz \
+    && tar -xvzf geckodriver-v0.36.0-linux64.tar.gz \
     && chmod +x geckodriver \
     && mv geckodriver /usr/local/bin/ \
-    && rm geckodriver-v0.30.0-linux64.tar.gz
+    && rm geckodriver-v0.36.0-linux64.tar.gz
 
 # Устанавливаем зависимости Python
 COPY requirements.txt .
