@@ -1,11 +1,21 @@
 FROM selenium/standalone-firefox:latest
 
-# Install Python dependencies
+# Устанавливаем необходимые системные зависимости
+USER root
+RUN apt-get update && apt-get install -y \
+    python3-venv \
+    && rm -rf /var/lib/apt/lists/*
+
+# Создаем виртуальное окружение
+RUN python3 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Устанавливаем Python-зависимости
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the script
+# Копируем скрипт
 COPY . .
 
-# Run the script
+# Запускаем скрипт
 CMD ["python", "your_script_name.py"]
