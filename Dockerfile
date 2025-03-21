@@ -5,6 +5,10 @@ FROM python:3.9-slim
 RUN apt-get update && apt-get install -y \
     firefox-esr \
     wget \
+    xvfb \  # Virtual display for headless mode
+    libgl1-mesa-glx \  # OpenGL library
+    libgl1-mesa-dri \  # Direct Rendering Infrastructure
+    libpci-dev \  # PCI utilities (required for GPU detection)
     && rm -rf /var/lib/apt/lists/*
 
 # Устанавливаем Geckodriver (версия 0.36.0)
